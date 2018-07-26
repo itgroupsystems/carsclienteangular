@@ -36,18 +36,24 @@ export class CarsService {
       query: gql`
       {
         carQuery {
-           entities {
-             ... on Car {
-               id
-               registrationNumber
-               image {
-                 url
-               }
-               owner
-             }
-           }
-         }
-       }
+          entities {
+            entityId
+            ... on Car {
+              id
+              km
+              image {
+                targetId
+                alt
+                title
+                width
+                height
+                url
+              }
+              owner
+            }
+          }
+        }
+      }
        
       `
     })
@@ -85,11 +91,11 @@ export class CarsService {
   }
 
   public getAllRest(): Observable<Car[]> {
-    return this.http.get<Car[]>(environment.urlApiRest + 'cars');
+    return this.http.get<Car[]>(environment.urlApiRest + 'car');
   }
 
   public findRest(id: number): Observable<Car> {
-    return this.http.get<Car>(environment.urlApiRest + 'cars/' + id);
+    return this.http.get<Car>(environment.urlApiRest + 'car/' + id);
   }
 
 }

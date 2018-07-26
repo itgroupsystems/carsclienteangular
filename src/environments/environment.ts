@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  urlApiRest: "http://localhost:4000/",
-  urlApiGraphQl: "http://localhost:3000/",
+  urlApiRest: "http://localhost/drupal/",
+  urlApiGraphQl: "http://localhost/drupal/graphql/",
 
 };
 
