@@ -1,0 +1,29 @@
+<div class="container">
+  <a mat-icon-button class="btn-back" routerLink="/cars" matTooltip="Volver">
+    <mat-icon aria-label="arrow-left">arrow_back</mat-icon>
+  </a>
+  <h1 class="mat-display-1">Automóvil</h1>
+  <div class="row row-btn-toggle">
+    <mat-slide-toggle class="btn-toggle" [color]="color"
+     [checked]="checked" (change)="chooseApi($event)">
+      {{ apiReq }}
+    </mat-slide-toggle>
+  </div>
+  <div class="row" *ngIf="car != null">
+    <div class="col-md-4">
+      <mat-card>
+        <p>Matricula: {{ car.registration_number }}</p>
+        <p>Color: {{ car.color }}</p>
+        <p>Km: {{ car.km }}</p>
+        <p>Owner: {{ car.owner }}</p>
+      </mat-card>
+    </div>
+    <div class="col-md-8">
+      <mat-card class="photo-car">
+        <img mat-card-image src="{{car.image.url}}" alt="car">
+      </mat-card>
+    </div>
+  </div>
+</div>
+<mat-progress-spinner *ngIf="loadData" class="progress-spinnner-app" [color]="color" [mode]="mode" [diameter]="diameter">
+</mat-progress-spinner>

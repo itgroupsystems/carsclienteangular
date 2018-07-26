@@ -1,0 +1,14 @@
+.container{
+    position: relative;
+}
+.btn-back{
+    position: absolute;
+    top: 0;
+    left: -40px;
+}
+.photo-car{
+    padding-bottom: 0px;
+}
+.row-btn-toggle{
+    margin: 30px 0px;
+}
