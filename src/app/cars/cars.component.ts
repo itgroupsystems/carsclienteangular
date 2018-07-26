@@ -11,11 +11,11 @@ export class CarsComponent implements OnInit {
   mode: string = 'indeterminate';
   diameter: number = 50;
   cars: Car[];
+  apiReq: string = "";
   loadData: boolean = true;
   errReqData: boolean = false;
-  apiReq: string = "";
   checked: boolean = true;
-
+  emptyData: boolean = false;
   constructor(private carsService: CarsService) { }
 
   ngOnInit() {
@@ -26,11 +26,14 @@ export class CarsComponent implements OnInit {
   getAllCarsRest() {
     this.loadData = true;
     this.errReqData = false;
+    this.emptyData = false;
     this.carsService.getAllRest().subscribe(
       result => {
-        console.log(result);
         this.loadData = false;
         this.cars = result;
+        if (this.cars.length == 0) {
+          this.emptyData = true;
+        }
       },
       error => {
         this.loadData = false;
@@ -42,11 +45,14 @@ export class CarsComponent implements OnInit {
   getAllCarsGraph() {
     this.loadData = true;
     this.errReqData = false;
+    this.emptyData = false;
     this.carsService.getAllGraph().subscribe(
       result => {
-        console.log(result);
         this.loadData = false;
         this.cars = result;
+        if (this.cars.length == 0) {
+          this.emptyData = true;
+        }
       },
       error => {
         this.loadData = false;

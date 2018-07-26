@@ -35,5 +35,5 @@ export interface carQuery {
 export type Query = {
     carQuery: carQuery;
     Car: Car;
-    carById:Car
+    carById: Car
 }

@@ -10,15 +10,17 @@
       <mat-card class="example-card">
         <a routerLink="{{car.id}}/{{ apiReq }}" matTooltip="Ver Detalle">
           <app-ngui-in-view>
-            <img *ngIf mat-card-image src="{{car.image.url}}" alt="car">
+            <img *ngIf mat-card-image src="{{car.image.url}}" alt="{{car.image.alt}}">
           </app-ngui-in-view>
         </a>
-        <span class="text-data-car registration-number">{{ car.registrationNumber }}</span>
+        <span class="text-data-car registration-number">{{ car.registration_number }}</span>
         <span class="text-data-car owner">{{ car.owner }}</span>
       </mat-card>
     </div>
+   
   </div>
   <mat-progress-spinner *ngIf="loadData" class="progress-spinnner-app" [color]="color" [mode]="mode" [diameter]="diameter">
   </mat-progress-spinner>
   <h1 class="mat-display-1" *ngIf="errReqData"> Hubo algún error al consultar ( {{ apiReq }}) los datos.</h1>
+  <p *ngIf="emptyData" class="mat-typography">No existen datos</p>
 </div>

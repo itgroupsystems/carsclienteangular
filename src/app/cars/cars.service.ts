@@ -40,7 +40,7 @@ export class CarsService {
             entityId
             ... on Car {
               id
-              km
+              registration_number
               image {
                 targetId
                 alt
@@ -72,6 +72,7 @@ export class CarsService {
           color
           km
           owner
+          registration_number
           image {
             targetId
             alt
