@@ -4,8 +4,7 @@
   </a>
   <h1 class="mat-display-1">Automóvil</h1>
   <div class="row row-btn-toggle">
-    <mat-slide-toggle class="btn-toggle" [color]="color"
-     [checked]="checked" (change)="chooseApi($event)">
+    <mat-slide-toggle class="btn-toggle" [color]="color" [checked]="checked" (change)="chooseApi($event)">
       {{ apiReq }}
     </mat-slide-toggle>
   </div>
@@ -24,6 +23,8 @@
       </mat-card>
     </div>
   </div>
+  <h1 class="mat-display-1" *ngIf="errReqData"> Hubo algún error al consultar ( {{ apiReq }}) los datos.</h1>
 </div>
+
 <mat-progress-spinner *ngIf="loadData" class="progress-spinnner-app" [color]="color" [mode]="mode" [diameter]="diameter">
 </mat-progress-spinner>

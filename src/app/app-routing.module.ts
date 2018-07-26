@@ -10,7 +10,7 @@ const routes: Routes = [
     path: '', redirectTo: '/cars',
     pathMatch: 'full'
   },
-  { path: 'cars/:id', component: ViewCarsComponent }
+  { path: 'cars/:id/:api', component: ViewCarsComponent }
 ];
 
 @NgModule({

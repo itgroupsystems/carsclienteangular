@@ -7,29 +7,23 @@ import { HttpLinkModule, HttpLink } from 'apollo-angular-link-http';
 import gql from 'graphql-tag';
 import { setContext } from 'apollo-link-context';
 import { InMemoryCache } from 'apollo-cache-inmemory';
+import { environment } from '../../environments/environment';
 
-import { Car, carQuery, Query } from './car.model';
+import { Car, Query } from './car.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CarsService {
 
-  urlApiRest: string = "http://192.168.1.12/blog/car/demo_resource/";
-  // urlApiGraphQl: string = "http://localhost:3000/graphql";
-  urlApiGraphQl: string = "http://192.168.1.14/drupal/graphql/";
-
   constructor(private apollo: Apollo, httpLink: HttpLink, private http: HttpClient) {
-    const httpA = httpLink.create({ uri: this.urlApiGraphQl });
-
+    const httpA = httpLink.create({ uri: environment.urlApiGraphQl });
     const auth = setContext((_, { headers }) => {
-      const token = "SESS29af1facda0a866a687d5055f2fade2c=RkpRG-e-G1_gEDzWYnbgRFzpMZ6vq6ZgCmlFEYcjohU";
       return {
         headers: new HttpHeaders(
           {
           })
       };
-
     });
     apollo.create({
       link: auth.concat(httpA),
@@ -47,7 +41,6 @@ export class CarsService {
                id
                registrationNumber
                image {
-                 alt
                  url
                }
                owner
@@ -55,6 +48,7 @@ export class CarsService {
            }
          }
        }
+       
       `
     })
       .valueChanges
@@ -91,11 +85,11 @@ export class CarsService {
   }
 
   public getAllRest(): Observable<Car[]> {
-    return this.http.get<Car[]>(this.urlApiRest + '');
+    return this.http.get<Car[]>(environment.urlApiRest + 'cars');
   }
 
   public findRest(id: number): Observable<Car> {
-    return this.http.get<Car>(this.urlApiRest + '/' + id);
+    return this.http.get<Car>(environment.urlApiRest + 'cars/' + id);
   }
 
 }

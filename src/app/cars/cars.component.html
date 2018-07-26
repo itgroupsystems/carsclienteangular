@@ -1,15 +1,14 @@
 <div class="container">
   <h1 class="mat-display-1 text-title">Lista de Automoviles</h1>
   <div class="row row-btn-toggle">
-    <mat-slide-toggle class="btn-toggle" [color]="color" 
-    [checked]="checked" (change)="chooseApi($event)">
-     {{ apiReq }}
+    <mat-slide-toggle class="btn-toggle" [color]="color" [checked]="checked" (change)="chooseApi($event)">
+      {{ apiReq }}
     </mat-slide-toggle>
   </div>
   <div class="row">
     <div *ngFor="let car of cars ;let i = index" class="col-md-4 col-sm-6">
       <mat-card class="example-card">
-        <a routerLink="{{car.id}}" matTooltip="Ver Detalle">
+        <a routerLink="{{car.id}}/{{ apiReq }}" matTooltip="Ver Detalle">
           <app-ngui-in-view>
             <img *ngIf mat-card-image src="{{car.image.url}}" alt="car">
           </app-ngui-in-view>
@@ -19,7 +18,7 @@
       </mat-card>
     </div>
   </div>
-
   <mat-progress-spinner *ngIf="loadData" class="progress-spinnner-app" [color]="color" [mode]="mode" [diameter]="diameter">
   </mat-progress-spinner>
+  <h1 class="mat-display-1" *ngIf="errReqData"> Hubo algún error al consultar ( {{ apiReq }}) los datos.</h1>
 </div>

@@ -12,48 +12,54 @@ export class CarsComponent implements OnInit {
   diameter: number = 50;
   cars: Car[];
   loadData: boolean = true;
+  errReqData: boolean = false;
   apiReq: string = "";
-  checked: boolean = false;
+  checked: boolean = true;
 
   constructor(private carsService: CarsService) { }
 
   ngOnInit() {
-    this.getAllCarsGraph();
-    this.apiReq = "Graphql";
-    // this.getAllCarsGraph();
+    this.getAllCarsRest();
+    this.apiReq = "REST";
   }
 
   getAllCarsRest() {
     this.loadData = true;
-    console.log("con rest");
-    this.carsService.getAllRest().subscribe(result => {
-      console.log(result);
-      setTimeout(() => {
+    this.errReqData = false;
+    this.carsService.getAllRest().subscribe(
+      result => {
+        console.log(result);
         this.loadData = false;
         this.cars = result;
-      }, 1000);
-    });
+      },
+      error => {
+        this.loadData = false;
+        this.errReqData = true;
+      }
+    );
   }
 
   getAllCarsGraph() {
     this.loadData = true;
-    console.log("con graphql");
-    this.carsService.getAllGraph().subscribe(result => {
-      console.log(result);
-      setTimeout(() => {
+    this.errReqData = false;
+    this.carsService.getAllGraph().subscribe(
+      result => {
+        console.log(result);
         this.loadData = false;
         this.cars = result;
-      }, 1000);
-    });
+      },
+      error => {
+        this.loadData = false;
+        this.errReqData = true;
+      }
+    );
   }
 
   chooseApi(e: any) {
     if (e.checked == true) {
-      console.log("Rest "+ e.checked);
       this.apiReq = "REST";
       this.getAllCarsRest()
     } else {
-      console.log("Graphql"+ e.checked);
       this.apiReq = "Graphql";
       this.getAllCarsGraph();
     }

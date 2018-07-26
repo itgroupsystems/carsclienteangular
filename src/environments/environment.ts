@@ -3,7 +3,10 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  urlApiRest: "http://localhost:4000/",
+  urlApiGraphQl: "http://localhost:3000/",
+
 };
 
 /*
