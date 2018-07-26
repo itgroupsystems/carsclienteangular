@@ -1,5 +1,5 @@
 # Carsclienteangular
-
+This project is a frontend of Cars that allows to consume Rest / GraphQL services.
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.8.
 ## Install dependencies
 Run `npm install` to install the development dependencies
